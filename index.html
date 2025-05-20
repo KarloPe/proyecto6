@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Calificaciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Gestión de Calificaciones</h1>
+            <div id="docente-info">
+                <p>Bienvenido, <span id="nombre-docente">Docente</span></p>
+                <button id="btn-cerrar-sesion">Cerrar Sesión</button>
+            </div>
+        </header>
+        
+        <main>
+            <section id="login-section" class="active-section">
+                <h2>Iniciar Sesión</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="dni">DNI:</label>
+                        <input type="text" id="dni" name="dni" required>
+                    </div>
+                    <button type="submit">Ingresar</button>
+                </form>
+            </section>
+
+            <section id="cursos-section" class="hidden-section">
+                <h2>Mis Cursos</h2>
+                <div class="etapa-selector">
+                    <label for="etapa-select">Seleccionar Etapa:</label>
+                    <select id="etapa-select">
+                        <option value="1">Etapa 1</option>
+                        <option value="2">Etapa 2</option>
+                        <option value="3">Etapa 3</option>
+                        <option value="4">Etapa 4</option>
+                    </select>
+                </div>
+                <div class="curso-list" id="curso-list">
+                    <!-- Los cursos se cargarán dinámicamente aquí -->
+                </div>
+            </section>
+
+            <section id="alumnos-section" class="hidden-section">
+                <div class="header-actions">
+                    <button id="btn-volver-cursos" class="btn-secondary">← Volver a Cursos</button>
+                    <h2>Alumnos de <span id="nombre-curso">Curso</span></h2>
+                    <button id="btn-generar-informe" class="btn-primary">Generar Informe</button>
+                </div>
+                <div class="table-container">
+                    <table id="alumnos-table">
+                        <thead>
+                            <tr>
+                                <th>DNI</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Calificación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alumnos-tbody">
+                            <!-- Los alumnos se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="informe-section" class="hidden-section">
+                <div class="header-actions">
+                    <button id="btn-volver-alumnos" class="btn-secondary">← Volver a Alumnos</button>
+                    <h2>Informe de Calificaciones - <span id="informe-curso">Curso</span> - Etapa <span id="informe-etapa">1</span></h2>
+                    <button id="btn-descargar-informe" class="btn-primary">Descargar Informe</button>
+                </div>
+                <div class="table-container">
+                    <table id="informe-table">
+                        <thead>
+                            <tr>
+                                <th>DNI</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="informe-tbody">
+                            <!-- El informe se cargará dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal para editar calificación -->
+        <div id="modal-editar" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Editar Calificación</h3>
+                <form id="form-editar-calificacion">
+                    <div class="form-group">
+                        <label for="alumno-info">Alumno:</label>
+                        <p id="alumno-info">Apellido, Nombre (DNI)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="calificacion-input">Calificación:</label>
+                        <input type="number" id="calificacion-input" min="1" max="10" step="0.1" required>
+                    </div>
+                    <input type="hidden" id="alumno-dni-edit">
+                    <div class="form-buttons">
+                        <button type="button" id="btn-cancelar-edit" class="btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
